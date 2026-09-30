@@ -1,0 +1,723 @@
+/* =========================================================================
+   ENTREOLHARES — FOLHA DE ESTILO PRINCIPAL
+   Este arquivo é compartilhado pelas 3 páginas (index, quem-somos, edicoes).
+   As cores e fontes ficam centralizadas em :root logo abaixo — para mudar
+   a identidade visual da revista, basta editar os valores ali.
+   ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap');
+
+:root{
+  /* ---- PALETA DA REVISTA (os 6 tons enviados) ---- */
+  --laranja:      #E55A33; /* cor de marca — usada em títulos e destaques */
+  --pessego:      #F3D8CD; /* fundo claro principal */
+  --rosa-vivo:    #FF1A4D; /* chamadas de ação (CTA), links importantes */
+  --vermelho:     #CD1527; /* texto de destaque, contornos */
+  --ambar:        #FFA743; /* apoio quente, hover, tags */
+  --laranja2:     #F07D3A; /* apoio, gradientes */
+
+  /* ---- tons neutros derivados, para leitura confortável ---- */
+  --tinta:        #2B1710; /* "preto" quente usado no corpo de texto */
+  --tinta-suave:  #6B4A3E; /* texto secundário */
+  --papel:        #FFFBF7; /* branco quente para cartões */
+  --linha:        #E7C9B8; /* linhas divisórias sutis */
+
+  /* ---- tipografia ---- */
+  --fonte-display: "Fraunces", Georgia, serif;
+  --fonte-texto:   "Work Sans", Arial, sans-serif;
+
+  /* ---- escala tipográfica fluida ---- */
+  --tam-mega:   clamp(3rem, 4.5vw + 1.5rem, 7.5rem);
+  --tam-h1:     clamp(2.2rem, 2.6vw + 1.2rem, 3.6rem);
+  --tam-h2:     clamp(1.6rem, 1.4vw + 1rem, 2.4rem);
+  --tam-h3:     clamp(1.2rem, 0.6vw + 1rem, 1.5rem);
+  --tam-lead:   clamp(1.05rem, 0.4vw + 0.95rem, 1.3rem);
+
+  --largura-maxima: 1180px;
+}
+
+*, *::before, *::after{ box-sizing: border-box; }
+
+html{ scroll-behavior: smooth; }
+
+body{
+  margin: 0;
+  background: var(--pessego);
+  color: var(--tinta);
+  font-family: var(--fonte-texto);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img{ max-width: 100%; display: block; }
+
+a{ color: inherit; }
+
+.envolucro{
+  width: 100%;
+  max-width: var(--largura-maxima);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+/* respeita usuários que preferem menos animação */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+/* foco visível para navegação por teclado */
+a:focus-visible,
+button:focus-visible{
+  outline: 2px solid var(--vermelho);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* =========================================================================
+   CABEÇALHO / MASTHEAD
+   ========================================================================= */
+.masthead{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--pessego);
+  border-bottom: 1px solid var(--linha);
+}
+
+.masthead__linha{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1.1rem;
+  gap: 1rem;
+}
+
+.marca{
+  font-family: var(--fonte-display);
+  font-weight: 600;
+  font-size: clamp(1.4rem, 1.6vw + 1rem, 1.9rem);
+  text-decoration: none;
+  color: var(--vermelho);
+  letter-spacing: -0.01em;
+}
+
+.marca span{ color: var(--rosa-vivo); font-style: italic; font-weight: 500; }
+
+.nav-principal{
+  display: flex;
+  gap: clamp(1.2rem, 2vw, 2.2rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-principal a{
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.98rem;
+  color: var(--tinta);
+  padding-block: 0.3rem;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-principal a:hover,
+.nav-principal a[aria-current="page"]{
+  color: var(--rosa-vivo);
+  border-bottom-color: var(--rosa-vivo);
+}
+
+.botao-menu{
+  display: none;
+  background: none;
+  border: 1.5px solid var(--vermelho);
+  border-radius: 8px;
+  width: 42px;
+  height: 38px;
+  cursor: pointer;
+  padding: 0;
+}
+.botao-menu span{
+  display: block;
+  width: 20px;
+  height: 2px;
+  margin: 4px auto;
+  background: var(--vermelho);
+  border-radius: 2px;
+}
+
+@media (max-width: 760px){
+  .botao-menu{ display: block; }
+  .nav-principal{
+    position: absolute;
+    inset: 100% 0 auto 0;
+    flex-direction: column;
+    background: var(--papel);
+    padding: 1.25rem clamp(1.25rem, 4vw, 2.5rem);
+    border-bottom: 1px solid var(--linha);
+    gap: 1rem;
+    display: none;
+  }
+  .nav-principal.aberto{ display: flex; }
+}
+
+/* =========================================================================
+   HERO (usado na Home)
+   ========================================================================= */
+.hero{
+  padding-block: clamp(2.5rem, 6vw, 5rem) clamp(3rem, 6vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__grade{
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: center;
+}
+
+.hero__eyebrow{
+  font-family: var(--fonte-texto);
+  font-weight: 600;
+  color: var(--vermelho);
+  font-size: 0.95rem;
+  margin: 0 0 0.9rem;
+}
+
+.hero h1{
+  font-family: var(--fonte-display);
+  font-weight: 500;
+  font-size: var(--tam-mega);
+  line-height: 0.98;
+  margin: 0 0 1.3rem;
+  color: var(--tinta);
+  max-width: 12ch;
+}
+
+.hero h1 em{
+  font-style: italic;
+  color: var(--rosa-vivo);
+  font-weight: 500;
+}
+
+.hero__texto{
+  font-size: var(--tam-lead);
+  color: var(--tinta-suave);
+  max-width: 46ch;
+  margin: 0 0 2rem;
+}
+
+.grupo-botoes{ display: flex; flex-wrap: wrap; gap: 0.9rem; }
+
+.botao{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--fonte-texto);
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.85rem 1.6rem;
+  border-radius: 100px;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
+}
+.botao:hover{ transform: translateY(-2px); }
+
+.botao--cheio{
+  background: var(--rosa-vivo);
+  color: var(--papel);
+}
+.botao--cheio:hover{ background: var(--vermelho); }
+
+.botao--contorno{
+  background: transparent;
+  border-color: var(--vermelho);
+  color: var(--vermelho);
+}
+.botao--contorno:hover{ background: var(--vermelho); color: var(--papel); }
+
+/* mosaico de imagens do hero */
+.hero__mosaico{
+  position: relative;
+  aspect-ratio: 1 / 1.05;
+}
+.hero__mosaico img{
+  position: absolute;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px -18px rgba(43,23,16,0.45);
+}
+.hero__mosaico .foto-1{
+  width: 62%; height: 68%;
+  top: 0; right: 0;
+  transform: rotate(2deg);
+  z-index: 2;
+}
+.hero__mosaico .foto-2{
+  width: 50%; height: 46%;
+  bottom: 0; left: 0;
+  transform: rotate(-4deg);
+  z-index: 1;
+  border: 6px solid var(--pessego);
+}
+.hero__mosaico::before{
+  content: "";
+  position: absolute;
+  width: 70%; height: 70%;
+  right: -8%; bottom: -8%;
+  background: var(--ambar);
+  border-radius: 14px;
+  z-index: 0;
+}
+
+@media (max-width: 860px){
+  .hero__grade{ grid-template-columns: 1fr; }
+  .hero h1{ max-width: 100%; }
+  .hero__mosaico{ order: -1; max-width: 420px; margin-inline: auto; width: 100%; }
+}
+
+/* =========================================================================
+   SEÇÕES GERAIS
+   ========================================================================= */
+.secao{ padding-block: clamp(3rem, 6vw, 5.5rem); }
+
+.secao__cabecalho{
+  max-width: 62ch;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.secao__titulo{
+  font-family: var(--fonte-display);
+  font-size: var(--tam-h1);
+  font-weight: 500;
+  margin: 0 0 0.8rem;
+  color: var(--tinta);
+}
+
+.secao__descricao{
+  font-size: var(--tam-lead);
+  color: var(--tinta-suave);
+  margin: 0;
+}
+
+/* =========================================================================
+   CARTÕES DE EDIÇÃO (prévia na Home)
+   ========================================================================= */
+.grade-edicoes{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+.cartao-edicao{
+  background: var(--papel);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--linha);
+  text-decoration: none;
+  color: var(--tinta);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.cartao-edicao:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 20px 34px -22px rgba(43,23,16,0.35);
+}
+.cartao-edicao img{ aspect-ratio: 4/3; object-fit: cover; }
+.cartao-edicao__corpo{ padding: 1.3rem 1.4rem 1.5rem; }
+.cartao-edicao__numero{
+  font-family: var(--fonte-display);
+  font-style: italic;
+  color: var(--rosa-vivo);
+  font-size: 0.95rem;
+  margin: 0 0 0.3rem;
+}
+.cartao-edicao__titulo{
+  font-family: var(--fonte-display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0 0 0.4rem;
+}
+.cartao-edicao__resumo{ color: var(--tinta-suave); font-size: 0.95rem; margin: 0; }
+
+@media (max-width: 900px){
+  .grade-edicoes{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 620px){
+  .grade-edicoes{ grid-template-columns: 1fr; }
+}
+
+/* =========================================================================
+   AJUDE O PROJETO (doação via Pix) — HOME
+   ========================================================================= */
+.apoio{
+  background: linear-gradient(135deg, var(--vermelho) 0%, var(--rosa-vivo) 55%, var(--laranja2) 100%);
+  border-radius: 24px;
+  color: var(--papel);
+  padding: clamp(2rem, 5vw, 3.5rem);
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: clamp(2rem, 4vw, 3rem);
+  align-items: center;
+}
+
+.apoio__titulo{
+  font-family: var(--fonte-display);
+  font-size: var(--tam-h2);
+  font-weight: 500;
+  margin: 0 0 0.9rem;
+}
+
+.apoio__texto{
+  font-size: 1.05rem;
+  opacity: 0.95;
+  max-width: 48ch;
+  margin: 0 0 1.6rem;
+}
+
+.apoio__cartao-pix{
+  background: var(--papel);
+  color: var(--tinta);
+  border-radius: 18px;
+  padding: 1.6rem;
+  text-align: center;
+}
+
+.apoio__cartao-pix img{
+  width: 168px;
+  height: 168px;
+  margin: 0 auto 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--linha);
+}
+
+.apoio__chave-label{
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--tinta-suave);
+  margin: 0 0 0.4rem;
+}
+
+.apoio__chave-caixa{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--pessego);
+  border-radius: 100px;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.apoio__chave-texto{
+  flex: 1;
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.botao-copiar{
+  background: var(--vermelho);
+  color: var(--papel);
+  border: none;
+  border-radius: 100px;
+  padding: 0.55rem 1rem;
+  font-family: var(--fonte-texto);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease;
+}
+.botao-copiar:hover{ background: var(--laranja); }
+
+.apoio__aviso-copia{
+  min-height: 1.1rem;
+  font-size: 0.82rem;
+  color: var(--vermelho);
+  font-weight: 600;
+  margin: 0;
+}
+
+@media (max-width: 820px){
+  .apoio{ grid-template-columns: 1fr; }
+}
+
+/* =========================================================================
+   PÁGINA INTERNA — cabeçalho de página (Quem Somos / Edições)
+   ========================================================================= */
+.hero-interno{
+  padding-block: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 3vw, 2.5rem);
+  border-bottom: 1px solid var(--linha);
+}
+.hero-interno__eyebrow{
+  font-weight: 600;
+  color: var(--vermelho);
+  margin: 0 0 0.7rem;
+}
+.hero-interno h1{
+  font-family: var(--fonte-display);
+  font-weight: 500;
+  font-size: var(--tam-h1);
+  margin: 0 0 1rem;
+  max-width: 16ch;
+}
+.hero-interno p{
+  font-size: var(--tam-lead);
+  color: var(--tinta-suave);
+  max-width: 56ch;
+  margin: 0;
+}
+
+/* =========================================================================
+   QUEM SOMOS — blocos de texto + imagem alternados
+   ========================================================================= */
+.bloco-editorial{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  padding-block: clamp(2.5rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--linha);
+}
+.bloco-editorial:last-of-type{ border-bottom: none; }
+
+.bloco-editorial--invertido .bloco-editorial__imagem{ order: 2; }
+.bloco-editorial--invertido .bloco-editorial__texto{ order: 1; }
+
+.bloco-editorial__imagem img{
+  border-radius: 16px;
+  aspect-ratio: 4/3.2;
+  object-fit: cover;
+  box-shadow: 0 20px 40px -24px rgba(43,23,16,0.4);
+}
+
+.bloco-editorial__kicker{
+  font-weight: 600;
+  color: var(--rosa-vivo);
+  margin: 0 0 0.6rem;
+}
+.bloco-editorial__titulo{
+  font-family: var(--fonte-display);
+  font-size: var(--tam-h2);
+  font-weight: 500;
+  margin: 0 0 1rem;
+}
+.bloco-editorial__texto p{
+  color: var(--tinta-suave);
+  font-size: 1.03rem;
+  margin: 0 0 1rem;
+}
+.bloco-editorial__texto p:last-child{ margin-bottom: 0; }
+
+@media (max-width: 780px){
+  .bloco-editorial{ grid-template-columns: 1fr; }
+  .bloco-editorial--invertido .bloco-editorial__imagem,
+  .bloco-editorial--invertido .bloco-editorial__texto{ order: initial; }
+}
+
+/* valores / equipe — lista simples, não é numerada por não ser sequência */
+.lista-valores{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.lista-valores li{
+  border-top: 2px solid var(--laranja);
+  padding-top: 1rem;
+}
+.lista-valores h3{
+  font-family: var(--fonte-display);
+  font-weight: 500;
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem;
+}
+.lista-valores p{ color: var(--tinta-suave); margin: 0; font-size: 0.96rem; }
+
+@media (max-width: 700px){
+  .lista-valores{ grid-template-columns: 1fr; }
+}
+
+/* =========================================================================
+   EDIÇÕES — lista numerada (sequência cronológica real) com link externo
+   ========================================================================= */
+.lista-edicoes{
+  display: flex;
+  flex-direction: column;
+}
+
+.item-edicao{
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: clamp(1.2rem, 3vw, 2.5rem);
+  padding-block: 1.8rem;
+  border-bottom: 1px solid var(--linha);
+}
+.item-edicao:first-child{ border-top: 1px solid var(--linha); }
+
+.item-edicao__numero{
+  font-family: var(--fonte-display);
+  font-style: italic;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  color: var(--ambar);
+  min-width: 3ch;
+}
+
+.item-edicao__titulo{
+  font-family: var(--fonte-display);
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin: 0 0 0.35rem;
+}
+.item-edicao__meta{
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--vermelho);
+  margin: 0 0 0.5rem;
+}
+.item-edicao__resumo{
+  color: var(--tinta-suave);
+  margin: 0;
+  max-width: 58ch;
+  font-size: 0.98rem;
+}
+
+.item-edicao__link{
+  justify-self: end;
+}
+
+@media (max-width: 700px){
+  .item-edicao{
+    grid-template-columns: auto 1fr;
+  }
+  .item-edicao__link{
+    grid-column: 1 / -1;
+    justify-self: start;
+    margin-top: 0.6rem;
+  }
+}
+
+/* =========================================================================
+   RODAPÉ
+   ========================================================================= */
+.rodape{
+  border-top: 1px solid var(--linha);
+  padding-block: 2.5rem;
+  margin-top: clamp(2rem, 5vw, 3rem);
+}
+.rodape__linha{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.rodape__marca{
+  font-family: var(--fonte-display);
+  font-weight: 500;
+  color: var(--vermelho);
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+.rodape__social{
+  display: flex;
+  gap: 1.2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.rodape__social a{
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.92rem;
+  color: var(--tinta-suave);
+}
+.rodape__social a:hover{ color: var(--rosa-vivo); }
+.rodape__copy{
+  width: 100%;
+  font-size: 0.82rem;
+  color: var(--tinta-suave);
+  margin-top: 1rem;
+}
+
+/* =========================================================================
+   AJUSTES FINOS PARA CELULAR
+   Estas regras entram só em telas pequenas e refinam espaçamentos,
+   tamanhos de toque e quebras de linha para ficar confortável no celular.
+   ========================================================================= */
+@media (max-width: 600px){
+
+  /* menos espaço em branco nas bordas e entre seções no celular */
+  .envolucro{ padding-inline: 1.1rem; }
+  .secao{ padding-block: 2.5rem; }
+
+  /* cabeçalho: marca menor e mais espaço pro botão de menu */
+  .marca{ font-size: 1.3rem; }
+  .masthead__linha{ padding-block: 0.85rem; }
+
+  /* menu do celular ocupa a tela toda em altura, com sombra pra destacar */
+  .nav-principal{
+    box-shadow: 0 12px 20px -12px rgba(43,23,16,0.25);
+  }
+  .nav-principal a{
+    font-size: 1.05rem;
+    padding-block: 0.5rem;
+  }
+
+  /* hero: título um pouco menor e botões ocupando a largura toda
+     (mais fácil de tocar com o dedo) */
+  .hero{ padding-block: 1.75rem 2.5rem; }
+  .hero__texto{ font-size: 1rem; }
+  .grupo-botoes{ flex-direction: column; }
+  .grupo-botoes .botao{ width: 100%; justify-content: center; }
+
+  /* mosaico de fotos um pouco mais compacto */
+  .hero__mosaico{ max-width: 300px; }
+
+  /* cartões de edição: imagem um pouco mais baixa, texto mais compacto */
+  .cartao-edicao__corpo{ padding: 1.1rem 1.2rem 1.3rem; }
+
+  /* bloco "ajude o projeto": menos padding e cartão do Pix mais estreito */
+  .apoio{ padding: 1.5rem; border-radius: 18px; }
+  .apoio__cartao-pix{ padding: 1.25rem; }
+  .apoio__cartao-pix img{ width: 140px; height: 140px; }
+  .apoio__chave-texto{ font-size: 0.85rem; }
+
+  /* lista de edições: número menor e botão "Ler edição" ocupando
+     a largura toda, mais fácil de tocar */
+  .item-edicao{ padding-block: 1.4rem; }
+  .item-edicao__numero{ font-size: 1.8rem; }
+  .item-edicao__titulo{ font-size: 1.2rem; }
+  .item-edicao__link{
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* blocos de "Quem Somos": imagem um pouco mais baixa */
+  .bloco-editorial{ padding-block: 1.75rem; }
+  .bloco-editorial__titulo{ font-size: 1.5rem; }
+
+  /* rodapé: tudo centralizado e empilhado, mais fácil de ler */
+  .rodape__linha{
+    flex-direction: column;
+    text-align: center;
+  }
+  .rodape__social{
+    flex-direction: column;
+    gap: 0.6rem;
+    align-items: center;
+  }
+  .rodape__copy{ text-align: center; margin-top: 0.6rem; }
+}

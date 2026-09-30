@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edições — EntreOlhares</title>
+<meta name="description" content="Todas as edições da revista digital EntreOlhares, com link para leitura completa.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="envolucro masthead__linha">
+    <a href="index.html" class="marca">Entre<span>Olhares</span></a>
+    <nav aria-label="Navegação principal">
+      <ul class="nav-principal">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="quem-somos.html">Quem Somos</a></li>
+        <li><a href="edicoes.html" aria-current="page">Edições</a></li>
+      </ul>
+    </nav>
+    <button class="botao-menu" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero-interno">
+    <div class="envolucro">
+      <p class="hero-interno__eyebrow">Edições</p>
+      <h1>Todas as edições, em ordem.</h1>
+      <p>
+        Clique em "Ler edição" para abrir a edição completa no site.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       LISTA DE EDIÇÕES
+       EDITAR — para cada edição, ajuste:
+       - o número (span dentro de item-edicao__numero)
+       - o título e a data/tema (item-edicao__titulo / __meta)
+       - o resumo (item-edicao__resumo)
+       - o href do botão "Ler edição": troque "https://exemplo.com/edicao-03"
+         pelo link real onde a edição está publicada. target="_blank"
+         faz o link abrir em uma nova aba.
+
+       Para adicionar uma nova edição, copie um bloco inteiro
+       <div class="item-edicao"> ... </div> e cole no topo da lista.
+       ============================================================ -->
+  <section class="secao">
+    <div class="envolucro">
+      <div class="lista-edicoes">
+
+
+
+        <div class="item-edicao">
+          <span class="item-edicao__numero">02</span>
+          <div>
+            <p class="item-edicao__meta">Setembro de 2026</p>
+            <h2 class="item-edicao__titulo">(Re)-Evoluções</h2>
+            <p class="item-edicao__resumo">
+              "A revolução não deve necessariamente seguir a evolução, assim como a ação segue o desejo de agir?" - Élisée Reclus.
+            </p>
+          </div>
+          <a class="botao botao--contorno item-edicao__link"
+             href="https://exemplo.com/edicao-02"
+             target="_blank" rel="noopener">
+            Ler edição
+          </a>
+        </div>
+
+        <div class="item-edicao">
+          <span class="item-edicao__numero">01</span>
+          <div>
+            <p class="item-edicao__meta">Fevereiro de 2026</p>
+            <h2 class="item-edicao__titulo">Invisibilidades</h2>
+            <p class="item-edicao__resumo">
+              "É preciso tirar as situações da invisibilidade para que soluções sejam encontradas." — Djamila Ribeiro.
+            </p>
+          </div>
+          <a class="botao botao--contorno item-edicao__link"
+             href="https://anyflip.com/nyrmi/xofr/"
+             target="_blank" rel="noopener">
+            Ler edição
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rodape">
+  <div class="envolucro rodape__linha">
+    <a href="index.html" class="rodape__marca">EntreOlhares</a>
+    <ul class="rodape__social">
+      <li><a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="mailto:revistaentreolhares@gmail.com" data-copiar-email="revistaentreolhares@gmail.com">revistaentreolhares@gmail.com</a></li>
+    </ul>
+    <p class="rodape__copy">&copy; 2026 EntreOlhares. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

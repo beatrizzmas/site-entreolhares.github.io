@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EntreOlhares — Revista Digital</title>
+<meta name="description" content="EntreOlhares é uma revista digital sobre fotografia, cultura e os jeitos de ver o mundo.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================================================
+     CABEÇALHO — igual nas 3 páginas. Se mudar aqui, copie e cole
+     nas outras páginas (quem-somos.html e edicoes.html) também.
+     ============================================================ -->
+<header class="masthead">
+  <div class="envolucro masthead__linha">
+    <a href="index.html" class="marca">Entre<span>Olhares</span></a>
+
+    <nav aria-label="Navegação principal">
+      <ul class="nav-principal">
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="quem-somos.html">Quem Somos</a></li>
+        <li><a href="edicoes.html">Edições</a></li>
+      </ul>
+    </nav>
+
+    <button class="botao-menu" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============================================================
+       HERO — título e imagens de destaque
+       EDITAR: troque o texto do título, o parágrafo e as duas fotos
+       (foto-1 e foto-2). Use fotos verticais/quadradas de boa qualidade.
+       ============================================================ -->
+  <section class="hero">
+    <div class="envolucro hero__grade">
+      <div>
+        <p class="hero__eyebrow">Revista digital de Humanidades, diversidade &amp; atualidades</p>
+        <h1>Histórias contadas <em>pelo olhar</em> de jovens.</h1>
+        <p class="hero__texto">
+          <!-- EDITAR: texto de apresentação da revista -->
+          A EntreOlhares reúne textos acadêmicos, curiosidades 
+         e diversas formas de expressão artística. A cada edição, um novo
+          jeito de ver o mundo à sua volta.
+        </p>
+        <div class="grupo-botoes">
+          <a href="edicoes.html" class="botao botao--cheio">Ler as edições</a>
+          <a href="quem-somos.html" class="botao botao--contorno">Conhecer o projeto</a>
+        </div>
+      </div>
+
+      <div class="hero__mosaico">
+        <!-- EDITAR: troque os dois "src" pelas suas próprias fotos -->
+        <img class="foto-1" src="https://placehold.co/560x500/CD1527/FFFBF7?text=Ensaio+fotográfico" alt="Foto de capa da edição atual da revista">
+        <img class="foto-2" src="https://placehold.co/560x500/CD1527/FFFBF7?text=Ensaio+fotográfico" alt="Imagem de um ensaio fotográfico publicado na revista">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PRÉVIA DE EDIÇÕES — 3 cartões que apontam para edicoes.html
+       EDITAR: título, resumo e imagem de cada cartão. Para novas
+       edições, copie um bloco <a class="cartao-edicao">...</a>
+       inteiro e cole abaixo dos outros.
+       ============================================================ -->
+  <section class="secao">
+    <div class="envolucro">
+      <div class="secao__cabecalho">
+        <h2 class="secao__titulo">Edição mais recente</h2>
+        <p class="secao__descricao">Um recorte do que foi publicado nos últimos meses — a lista completa está na página de Edições.</p>
+      </div>
+
+      <div class="grade-edicoes">
+
+    
+
+        <a href="edicoes.html" class="cartao-edicao">
+          <img src="edicao2.png" alt="Capa da edição 2">
+          <div class="cartao-edicao__corpo">
+            <p class="cartao-edicao__numero">Edição 02</p>
+            <h3 class="cartao-edicao__titulo">(Re)-Evoluções</h3>
+            <p class="cartao-edicao__resumo">O passado, o presente e o futuro se entrelaçam para contar uma única história.</p>
+          </div>
+        </a>
+
+      
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       AJUDE O PROJETO — doação via Pix
+       EDITAR:
+       - troque data-chave="SUA_CHAVE_PIX_AQUI" pela sua chave real
+         (e-mail, telefone, CPF/CNPJ ou chave aleatória)
+       - o texto dentro de .apoio__chave-texto deve ser IGUAL à chave
+       - a imagem do QR Code é gerada automaticamente a partir da
+         chave digitada logo abaixo (troque o texto depois de "data="
+         na URL da imagem). Para um QR Code Pix "de verdade", com
+         valor e nome do favorecido, gere o código no app do seu
+         banco e substitua a URL da imagem pelo link/arquivo dele.
+       ============================================================ -->
+  <section class="secao" id="ajude-o-projeto">
+    <div class="envolucro">
+      <div class="apoio">
+        <div>
+          <h2 class="apoio__titulo">Ajude o projeto a continuar</h2>
+          <p class="apoio__texto">
+            A EntreOlhares não possui fins lucrativos e é feita por fotógrafos e
+            escritores voluntários. Sua doação, de qualquer valor,
+            ajuda a pagar hospedagem, revisão e as próximas edições.
+          </p>
+          <p class="apoio__texto" style="margin-bottom:0;">
+            Basta escanear o QR Code ou copiar a chave Pix ao lado.
+          </p>
+        </div>
+
+        <div class="apoio__cartao-pix">
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=79bb3cbc-2d34-42e1-84fe-63681652d1ab"
+            alt="QR Code para doação via Pix">
+
+          <p class="apoio__chave-label">Chave Pix</p>
+          <div class="apoio__chave-caixa">
+            <span class="apoio__chave-texto">79bb3cbc-2d34-42e1-84fe-63681652d1ab</span>
+            <button class="botao-copiar" data-copiar-pix data-chave="79bb3cbc-2d34-42e1-84fe-63681652d1ab">
+              Copiar
+            </button>
+          </div>
+          <p class="apoio__aviso-copia" data-aviso-copia role="status"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     RODAPÉ — igual nas 3 páginas.
+     EDITAR: links de redes sociais e ano.
+     ============================================================ -->
+<footer class="rodape">
+  <div class="envolucro rodape__linha">
+    <a href="index.html" class="rodape__marca">EntreOlhares</a>
+    <ul class="rodape__social">
+      <li><a href="https://www.instagram.com/entreolharesrv?igsi=dzFubnJjdXXpNWM3" target="_blank" rel="noopener">Instagram</a></li>
+       <li><a href="mailto:revistaentreolhares@gmail.com" data-copiar-email="revistaentreolhares@gmail.com">revistaentreolhares@gmail.com</a></li>
+    </ul>
+    <p class="rodape__copy">&copy; 2026 EntreOlhares. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
