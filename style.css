@@ -689,11 +689,59 @@ button:focus-visible{
   /* cartões de edição: imagem um pouco mais baixa, texto mais compacto */
   .cartao-edicao__corpo{ padding: 1.1rem 1.2rem 1.3rem; }
 
-  /* bloco "ajude o projeto": menos padding e cartão do Pix mais estreito */
-  .apoio{ padding: 1.5rem; border-radius: 18px; }
-  .apoio__cartao-pix{ padding: 1.25rem; }
-  .apoio__cartao-pix img{ width: 140px; height: 140px; }
-  .apoio__chave-texto{ font-size: 0.85rem; }
+ /* Bloco "Ajude o projeto" */
+.apoio {
+  padding: 1.25rem;
+  border-radius: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.apoio__cartao-pix {
+  padding: 1rem;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.apoio__cartao-pix img {
+  width: 130px;
+  height: 130px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.apoio__chave-texto {
+  font-size: 0.8rem;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Ajustes para celular */
+@media (max-width: 600px) {
+  .apoio {
+    padding: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .apoio__cartao-pix {
+    width: 100%;
+    max-width: 280px;
+    padding: 0.85rem;
+  }
+
+  .apoio__cartao-pix img {
+    width: 115px;
+    height: 115px;
+  }
+
+  .apoio__chave-texto {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+}
 
   /* lista de edições: número menor e botão "Ler edição" ocupando
      a largura toda, mais fácil de tocar */
