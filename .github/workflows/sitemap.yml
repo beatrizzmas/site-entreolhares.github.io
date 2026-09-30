@@ -1,0 +1,23 @@
+name: Gerar Sitemap
+
+on:
+  push:
+     branches: [ main ]
+
+jobs:
+ sitemap:
+   runs-on: ubuntu-latest
+   steps:
+    - name: Checkout do código
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        
+    - name: Gerar Sitemap
+      uses: cicirello/generate-sitemap@v1
+      with:
+        base-url-path: 'https://entreolhares.com'
+    - name: Commit e push das alterações
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "Atualização automática do sitemap.xml"
